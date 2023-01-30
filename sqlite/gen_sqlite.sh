@@ -26,9 +26,15 @@ VIEW_START_LINE=$(\
 	head -n1
 	)
 
-cat $DIR/$DUMPNAME | \
-	head -n$VIEW_START_LINE \
-	> $TMPDIR/$DUMPNAME
+
+if [[ "$VIEW_START_LINE" != "" ]]
+then 
+	cat $DIR/$DUMPNAME | \
+		head -n$VIEW_START_LINE \
+		> $TMPDIR/$DUMPNAME
+else
+	cp $DIR/$DUMPNAME $TMPDIR/$DUMPNAME
+fi
 
 INFO Converting to SQLite 
 
