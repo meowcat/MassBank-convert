@@ -16,10 +16,12 @@ mzVault is useful for use in Compound Discoverer.
 * Convert the MassBank MariaDB dump to sqlite:
     `docker run --rm -v /$DATADIR:/data massbank_convert /scripts/sqlite/gen_sqlite.sh $DUMPNAME.sql`
     where `$DATADIR` is the directory in which the dump is stored and `$DUMPNAME.sql` is the filename.
-    The converted database will be stored in the same directory as `$DUMPNAME.db`.
+    The converted database will be stored in the same directory with filename `$DUMPNAME.db`.
 
 * Convert the sqlite database to an mzVault database:
-
+    `docker run --rm -v /$DATADIR:/data massbank_convert /scripts/sqlite/gen_sqlite.sh $DUMPNAME.db`
+    where `$DATADIR` is the directory in which the dump is stored and `$DUMPNAME.db` is the filename.
+    The converted database will be stored in the same directory with filename `$DUMPNAME-mzvault.db`.
     
 
     
