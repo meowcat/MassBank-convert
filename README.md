@@ -18,6 +18,8 @@ mzVault is useful for use in Compound Discoverer.
     where `$DATADIR` is the directory in which the dump is stored and `$DUMPNAME.sql` is the filename.
     The converted database will be stored in the same directory as `$DUMPNAME.db`.
 
+* Convert the sqlite database to an mzVault database:
+
     
 
     

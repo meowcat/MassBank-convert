@@ -14,7 +14,6 @@ OUTNAME="${DUMPNAME%"$OUTNAME_"}${OUTNAME_%.*}"
 echo $OUTNAME
 
 DIR=/data
-
 TMPDIR=/tmp/sql_$(date +%s)
 mkdir -p $TMPDIR
 

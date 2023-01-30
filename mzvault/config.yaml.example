@@ -1,4 +1,4 @@
 file_out: massbank.db
 data_source: "C:/Daten/Spectral_Libraries/massbank-sqlite/massbank/MassBank.db"
 massbank_base: "https://massbank.eu/MassBank/RecordDisplay?id="
-collapse_inchikey: true
+collapse_inchikey: false

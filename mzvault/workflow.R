@@ -7,7 +7,13 @@ library(yaml)
 
 source("functions.R")
 
-config <- read_yaml("config.yaml")
+config_dir <- Sys.getenv("MZVGEN_CONFIG_DIR")
+if(config_dir == "")
+  config_dir <- getwd()
+
+config <- read_yaml(
+  fs::path(config_dir, "config.yaml")
+)
 
 
 con <- dbConnect(
