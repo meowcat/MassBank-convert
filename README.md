@@ -13,9 +13,11 @@ mzVault is useful for use in Compound Discoverer.
     `./dump_massbank.sh $INSTANCE [$TARGET]`, where `$INSTANCE` is the MassBank instance number 
     (check `docker ps` if you don't know) and `$TARGET`  is an optional path prefix (`/tmp` by default.)
     The script prints the path of the created dump, which is timestamped.
-* Convert the MassBank MariaDB dump to MySQL:
+* Convert the MassBank MariaDB dump to sqlite:
     `docker run --rm -v /$DATADIR:/data massbank_convert /scripts/sqlite/gen_sqlite.sh $DUMPNAME.sql`
-    where $DATADIR is the directory in which the dump is stored and $DUMPNAME.sql is the filename 
+    where `$DATADIR` is the directory in which the dump is stored and `$DUMPNAME.sql` is the filename.
+    The converted database will be stored in the same directory as `$DUMPNAME.db`.
+
     
 
     
