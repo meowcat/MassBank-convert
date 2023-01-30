@@ -15,15 +15,33 @@ echo $OUTNAME
 
 DIR=/data
 
-INFO Dumping from MySQL port $MYSQL_PORT
+TMPDIR=/tmp/sql_$(date +%s)
+mkdir -p $TMPDIR
+
+INFO Preprocessing: excise views
+
+VIEW_START_LINE=$(\
+	cat $DIR/$DUMPNAME |
+	grep -n 'Temporary table structure' | \
+	cut -f1 -d: | \
+	head -n1
+	)
+
+cat $DIR/$DUMPNAME | \
+	head -n$VIEW_START_LINE \
+	> $TMPDIR/$DUMPNAME
 
 INFO Converting to SQLite 
 
-rm $DIR/$OUTNAME.db
-rm $DIR/$OUTNAME.sqlite
+rm -f $DIR/$OUTNAME.db
 
-$SCRIPTPATH/mysql2sqlite/mysql2sqlite $DIR/$DUMPNAME | \
-	tee $DIR/$OUTNAME.sqlite | \
+$SCRIPTPATH/mysql2sqlite/mysql2sqlite $TMPDIR/$DUMPNAME | \
+	tee $TMPDIR/$OUTNAME.sqlite | \
 	sqlite3 $DIR/$OUTNAME.db
-sqlite3 $DIR/$OUTNAME < $SCRIPTPATH/views.sql
 
+INFO Adding views
+
+sqlite3 $DIR/$OUTNAME.db < $SCRIPTPATH/views.sql
+
+INFO Cleanup: removing temporary files
+rm -r $TMPDIR
