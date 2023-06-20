@@ -19,7 +19,7 @@ mzVault is useful for use in Compound Discoverer.
     The converted database will be stored in the same directory with filename `$DUMPNAME.db`.
 
 * Convert the sqlite database to an mzVault database:
-    `docker run --rm -v /$DATADIR:/data massbank_convert /scripts/sqlite/gen_sqlite.sh $DUMPNAME.db`
+    `docker run --rm -v /$DATADIR:/data massbank_convert /scripts/mzvault/gen_mzvault.sh $DUMPNAME.db`
     where `$DATADIR` is the directory in which the dump is stored and `$DUMPNAME.db` is the filename.
     The converted database will be stored in the same directory with filename `$DUMPNAME-mzvault.db`.
     
